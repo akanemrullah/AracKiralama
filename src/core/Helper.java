@@ -24,6 +24,7 @@ public class Helper {
     }
 
     public static void showMsg(String str) {
+        optionPaneTR();
         String msg;
         String title;
         switch (str) {
@@ -51,6 +52,18 @@ public class Helper {
         JOptionPane.showMessageDialog(null, msg, title, JOptionPane.INFORMATION_MESSAGE);
     }
 
+    public static boolean confirm (String str){
+        optionPaneTR();
+        String msg;
+        if (str.equals("sure")){
+            msg = "Bu islemi yapmak istedigine emin misin ?";
+        } else {
+            msg = str;
+        }
+
+        return JOptionPane.showConfirmDialog(null,msg,"Emin misin ?", JOptionPane.YES_NO_OPTION) == 0;
+    }
+
     public static boolean isFieldListEmpty(JTextField[] fieldList) {
         for (JTextField field : fieldList) {
             if (isFieldEmpty(field)) {
@@ -69,5 +82,11 @@ public class Helper {
                 return ((Toolkit.getDefaultToolkit().getScreenSize().width - size.width) / 2);
         }
         return 0;
+    }
+
+    public static void optionPaneTR(){
+        UIManager.put("OptionPane.okButtonText", "Tamam");
+        UIManager.put("OptionPane.yesButtonText", "Evet");
+        UIManager.put("OptionPane.noButtonText", "Hayir");
     }
 }
